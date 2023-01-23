@@ -74,6 +74,31 @@ int Insert(int value)
     }
 }
 
+// Deletes an element from the linked list
+int Delete(int value) {
+    struct LinkedListNode* curr_p = head_p;
+    struct LinkedListNode* pred_p = NULL;
+
+    /* Find value */
+    while (curr_p != NULL && curr_p->data < value) {
+        pred_p = curr_p;
+        curr_p = curr_p->next;
+    }
+
+    if (curr_p != NULL && curr_p->data == value) {
+        if (pred_p == NULL) {   // Delete first node in the list
+            head_p = curr_p->next;
+            free(curr_p);
+        } else {
+            pred_p->next = curr_p->next;
+            free(curr_p);
+        }
+        return 1;
+    } else {    // Value doesn't exist in the list
+        return 0;
+    }
+}
+
 int main()
 {
     printf("Hello World!");
