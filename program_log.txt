@@ -1,0 +1,177 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Case 1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Serial program :~~~~~~
+Average time: 14.76
+Standard Deviation: 1.2400716825158848
+No of Samples: 11
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with one mutex :~~~~~~
+Executing: ['./linked_list_mutex', '1000', '10000', '0.99', '0.005', '0.005', '1']
+No of threads: 1
+Average time: 14.8
+Standard Deviation: 0.9211323729436766
+No of Samples: 6
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.99', '0.005', '0.005', '2']
+No of threads: 2
+Average time: 17.57
+Standard Deviation: 1.519270159708871
+No of Samples: 12
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.99', '0.005', '0.005', '4']
+No of threads: 4
+Average time: 17.54
+Standard Deviation: 1.8002244528969384
+No of Samples: 17
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.99', '0.005', '0.005', '8']
+No of threads: 8
+Average time: 21.54
+Standard Deviation: 4.4231256373791155
+No of Samples: 65
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with read-write locks :~~~~~~
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.99', '0.005', '0.005', '1']
+No of threads: 1
+Average time: 21.75
+Standard Deviation: 4.236386396089206
+No of Samples: 59
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.99', '0.005', '0.005', '2']
+No of threads: 2
+Average time: 14.3
+Standard Deviation: 4.368158431285211
+No of Samples: 144
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.99', '0.005', '0.005', '4']
+No of threads: 4
+Average time: 9.14
+Standard Deviation: 4.173073861621126
+No of Samples: 321
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.99', '0.005', '0.005', '8']
+No of threads: 8
+Average time: 7.28
+Standard Deviation: 1.3187076624445233
+No of Samples: 51
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Case 2~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Serial program :~~~~~~
+Average time: 22.23
+Standard Deviation: 2.684993839693477
+No of Samples: 23
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with one mutex :~~~~~~
+Executing: ['./linked_list_mutex', '1000', '10000', '0.90', '0.05', '0.05', '1']
+No of threads: 1
+Average time: 11.75
+Standard Deviation: 4.803986139476552
+No of Samples: 257
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.90', '0.05', '0.05', '2']
+No of threads: 2
+Average time: 19.41
+Standard Deviation: 4.202200001009572
+No of Samples: 73
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.90', '0.05', '0.05', '4']
+No of threads: 4
+Average time: 17.26
+Standard Deviation: 2.8555103561253974
+No of Samples: 43
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.90', '0.05', '0.05', '8']
+No of threads: 8
+Average time: 18.93
+Standard Deviation: 1.918832768096061
+No of Samples: 16
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with read-write locks :~~~~~~
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.90', '0.05', '0.05', '1']
+No of threads: 1
+Average time: 22.93
+Standard Deviation: 1.6345697237555155
+No of Samples: 8
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.90', '0.05', '0.05', '2']
+No of threads: 2
+Average time: 13.97
+Standard Deviation: 1.8826963256312619
+No of Samples: 28
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.90', '0.05', '0.05', '4']
+No of threads: 4
+Average time: 10.0
+Standard Deviation: 3.234910580626065
+No of Samples: 161
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.90', '0.05', '0.05', '8']
+No of threads: 8
+Average time: 8.35
+Standard Deviation: 4.018580582617437
+No of Samples: 356
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Case 3~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Serial program :~~~~~~
+Average time: 59.55
+Standard Deviation: 10.321474133224783
+No of Samples: 47
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with one mutex :~~~~~~
+Executing: ['./linked_list_mutex', '1000', '10000', '0.50', '0.25', '0.25', '1']
+No of threads: 1
+Average time: 36.35
+Standard Deviation: 5.001767364409981
+No of Samples: 30
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.50', '0.25', '0.25', '2']
+No of threads: 2
+Average time: 21.29
+Standard Deviation: 1.6409839374071529
+No of Samples: 10
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.50', '0.25', '0.25', '4']
+No of threads: 4
+Average time: 13.02
+Standard Deviation: 1.3482498944104455
+No of Samples: 17
+*******************************
+Executing: ['./linked_list_mutex', '1000', '10000', '0.50', '0.25', '0.25', '8']
+No of threads: 8
+Average time: 13.15
+Standard Deviation: 1.5333003949031323
+No of Samples: 21
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~Parallel program (based on Pthreads) with read-write locks :~~~~~~
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.50', '0.25', '0.25', '1']
+No of threads: 1
+Average time: 54.06
+Standard Deviation: 4.074607250082423
+No of Samples: 9
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.50', '0.25', '0.25', '2']
+No of threads: 2
+Average time: 29.52
+Standard Deviation: 2.1152643887569784
+No of Samples: 8
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.50', '0.25', '0.25', '4']
+No of threads: 4
+Average time: 19.49
+Standard Deviation: 4.764123076377087
+No of Samples: 92
+*******************************
+Executing: ['./linked_list_read_write_locks', '1000', '10000', '0.50', '0.25', '0.25', '8']
+No of threads: 8
+Average time: 13.97
+Standard Deviation: 0.8698658900466593
+No of Samples: 6
+*******************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
