@@ -18,8 +18,8 @@ int Insert(int value);
 int Delete(int value);
 
 void InitializeLinkedList(int noOfNodes);
-int GenerateRandomValue();
-long GetCurrentTimestamp();
+int GenerateRandomValue(void);
+long GetCurrentTimestamp(void);
 void* Execute(void*);
 
 // Variable declarations
@@ -29,50 +29,6 @@ int noOfOperationsPerThread;
 int noOfMemberOperationsPerThread;
 int noOfInsertOperationsPerThread;
 int noOfDeleteOperationsPerThread;
-
-int main(int argc, char *argv[])
-{
-    if (argc != 7)
-    {
-        printf("Usage: ./linked_list_mutex <noOfNodes> <noOfOperations> <mMember> <mInsert> <mDelete> <noOfThreads>");
-        return -1;
-    };
-    long start, finish, elapsed;
-    pthread_t* threadHandles;
-
-    int noOfThreads = atoi(argv[6]);
-    int noOfNodes = atoi(argv[1]);
-    noOfOperationsPerThread = atoi(argv[2]) / noOfThreads;
-
-    noOfMemberOperationsPerThread = (int)(atof(argv[3]) * noOfOperationsPerThread);
-    noOfInsertOperationsPerThread = (int)(atof(argv[4]) * noOfOperationsPerThread);
-    noOfDeleteOperationsPerThread = (int)(atof(argv[5]) * noOfOperationsPerThread);
-
-    threadHandles = (pthread_t*) malloc (noOfThreads * sizeof(pthread_t));
-    pthread_mutex_init(&mutex, NULL);
-
-    InitializeLinkedList(noOfNodes);
-
-    long thread;
-    start = GetCurrentTimestamp();
-    for (thread = 0; thread < noOfThreads; thread++)
-    {
-        pthread_create(&threadHandles[thread], NULL, Execute, (void*) thread);
-    }
-
-    for (thread = 0; thread < noOfThreads; thread++)
-    {
-        pthread_join(threadHandles[thread], NULL);
-    }
-
-    finish = GetCurrentTimestamp();
-    elapsed = finish - start;
-
-    printf("Elapsed time: %ld milliseconds", elapsed);
-    return 0;
-}
-
-
 
 // Checks whether a given value exists in the linked list
 int Member(int value)
@@ -155,36 +111,13 @@ int Delete(int value)
     }
 }
 
-//generate random value
-int GenerateRandomValue()
+// Returns a random number between 0 and (2^16) – 1
+int GenerateRandomNumber()
 {
     return rand() % MAX_VALUE;
 }
 
-//get current timestamp
-long GetCurrentTimestamp()
-{
-    struct timeval te;
-    gettimeofday(&te, NULL);
-    long milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000;
-    return milliseconds;
-}
-
-//initialize linked list
-void InitializeLinkedList(int noOfNodes)
-{
-    int i;
-    for (i = 0; i < noOfNodes; i++)
-    {
-        int value = GenerateRandomValue();
-        if (Insert(value) == 0)
-        {
-            i--;
-        }
-    }
-}
-
-//use mutex for member, insert and delete
+// Executes Menber(), Insert() and Delete() mutex
 void* Execute(void* rank) {
     long start = ((long) rank) * noOfOperationsPerThread;
     long end = start + noOfOperationsPerThread;
@@ -192,22 +125,84 @@ void* Execute(void* rank) {
     long i;
     for (i = start; i < end; i++) {
         if (i < start + noOfInsertOperationsPerThread) {
-            int value = generateRandom();
             pthread_mutex_lock(&mutex);
-            Insert(value);
+            Insert(GenerateRandomNumber());
             pthread_mutex_unlock(&mutex);
         } else if (i < start + noOfInsertOperationsPerThread + noOfDeleteOperationsPerThread) {
-            int value = generateRandom();
             pthread_mutex_lock(&mutex);
-            Delete(value);
+            Delete(GenerateRandomNumber());
             pthread_mutex_unlock(&mutex);
         } else {
-            int value = generateRandom();
             pthread_mutex_lock(&mutex);
-            Member(value);
+            Member(GenerateRandomNumber());
             pthread_mutex_unlock(&mutex);
         }
     }
 
     return NULL;
+}
+
+// Returns the current time
+long GetCurrentTimestamp()
+{
+    struct timeval te;
+    gettimeofday(&te, NULL);                                    // Get current time
+    long milliseconds = te.tv_sec * 1000LL + te.tv_usec / 1000; // Caculate milliseconds
+    // printf("Milliseconds: %lld\n", milliseconds);
+    return milliseconds;
+}
+
+// Initializes the linked list
+void InitializeLinkedList(int noOfNodes)
+{
+    int i;
+    for (i = 0; i < noOfNodes; i++)
+    {
+        int value = GenerateRandomNumber();
+        if (Insert(value) == 0)
+        {
+            i--;
+        }
+    }
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc != 7)
+    {
+        printf("Invalid # Arguments : %d\n", argc);
+        return -1;
+    };
+    long startedTime, finishedTime, elapsedTime;
+    pthread_t* threadHandles;
+
+    int noOfThreads = atoi(argv[6]);
+    int noOfNodes = atoi(argv[1]);
+    noOfOperationsPerThread = atoi(argv[2]) / noOfThreads;
+
+    noOfMemberOperationsPerThread = (int)(atof(argv[3]) * noOfOperationsPerThread);
+    noOfInsertOperationsPerThread = (int)(atof(argv[4]) * noOfOperationsPerThread);
+    noOfDeleteOperationsPerThread = (int)(atof(argv[5]) * noOfOperationsPerThread);
+
+    threadHandles = (pthread_t*) malloc (noOfThreads * sizeof(pthread_t));
+    pthread_mutex_init(&mutex, NULL);
+
+    InitializeLinkedList(noOfNodes);
+
+    long thread;
+    startedTime = GetCurrentTimestamp();
+    for (thread = 0; thread < noOfThreads; thread++)
+    {
+        pthread_create(&threadHandles[thread], NULL, Execute, (void*) thread);
+    }
+
+    for (thread = 0; thread < noOfThreads; thread++)
+    {
+        pthread_join(threadHandles[thread], NULL);
+    }
+
+    finishedTime = GetCurrentTimestamp();
+    elapsedTime = finishedTime - startedTime;
+    printf("Elapsed time: %ld milliseconds", elapsedTime);
+    return 0;
 }
