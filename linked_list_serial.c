@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 
 #define MAX_VALUE 65536
 
@@ -10,9 +9,9 @@ struct LinkedListNode
 };
 
 // Method declarations
-bool Member(int value);
-bool Insert(int value);
-bool Delete(int value);
+int Member(int value);
+int Insert(int value);
+int Delete(int value);
 
 void InitializeLinkedList(int noOfNodes);
 int GenerateRandomValue();
@@ -27,7 +26,7 @@ int noOfInsertOperations;
 int noOfDeleteOperations;
 
 // Checks whether a given value exists in the linked list
-bool Member(int value)
+int Member(int value)
 {
     struct LinkedListNode *curr_p;
 
@@ -37,11 +36,41 @@ bool Member(int value)
 
     if (curr_p == NULL || curr_p->data > value)
     {
-        return false;
+        return 0;
     }
     else
     {
-        return true;
+        return 1;
+    }
+}
+
+// Inserts an element into the linked list
+int Insert(int value)
+{
+    struct LinkedListNode *curr_p = head_p;
+    struct LinkedListNode *pred_p = NULL;
+    struct LinkedListNode *temp_p;
+
+    while (curr_p != NULL && curr_p->data < value)
+    {
+        pred_p = curr_p;
+        curr_p = curr_p->next;
+    }
+
+    if (curr_p == NULL || curr_p->data > value)
+    {
+        temp_p = malloc(sizeof(struct LinkedListNode));
+        temp_p->data = value;
+        temp_p->next = curr_p;
+        if (pred_p == NULL) // New first node
+            head_p = temp_p;
+        else
+            pred_p->next = temp_p;
+        return 1;
+    }
+    else    // Value already exists in the linked list
+    {
+        return 0;
     }
 }
 
