@@ -16,10 +16,10 @@ int Member(int value);
 int Insert(int value);
 int Delete(int value);
 
-int GenerateRandomNumber();
+int GenerateRandomNumber(void);
 void Execute();
 void InitializeLinkedList(int noOfNodes);
-long GetCurrentTimestamp();
+long GetCurrentTimestamp(void);
 
 // Variable declarations
 struct LinkedListNode *head_p = NULL;
