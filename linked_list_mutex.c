@@ -203,6 +203,6 @@ int main(int argc, char *argv[])
 
     finishedTime = GetCurrentTimestamp();
     elapsedTime = finishedTime - startedTime;
-    printf("Elapsed time: %ld milliseconds", elapsedTime);
+    printf("Elapsed time : %ld", elapsedTime);
     return 0;
 }
